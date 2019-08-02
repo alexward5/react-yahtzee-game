@@ -39,6 +39,7 @@ it('works for four of kind', () => {
 
 it('works for full house', () => {
   expect(fullHouse.evalRoll([1, 1, 1, 2, 2])).toEqual(25);
+  expect(fullHouse.evalRoll([1, 1, 2, 2, 2])).toEqual(25);
   expect(fullHouse.evalRoll([1, 1, 1, 1, 1])).toEqual(0);
   expect(fullHouse.evalRoll([1, 1, 1, 1, 2])).toEqual(0);
 })
