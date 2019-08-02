@@ -59,18 +59,17 @@ class SumDistro extends Rule {
 
 class FullHouse extends Rule {
   evalRoll = dice => {
-    return (this.freq(dice).indexOf(3) > -1 && this.freq(dice).indexOf(2) > -1) ? this.score : 0;
+    return (this.freq(dice).includes(3) && this.freq(dice).includes(2)) ? this.score : 0;
   }
 }
 
 /** Check for small straights. */
 
 class SmallStraight extends Rule {
-  // TODO
   evalRoll = dice => {
     let consec = 0;
     // for each die check if the next die is in consecutive order
-    for (let i=0; i<dice.length-1; i++) {
+    for (let i=0; i<dice.length; i++) {
       if (dice[i+1] === dice[i] + 1) {
         consec += 1;
       } else {
@@ -106,12 +105,12 @@ class Yahtzee extends Rule {
 }
 
 // ones, twos, etc score as sum of that value
-const ones = new TotalOneNumber({ val: 1 });
-const twos = new TotalOneNumber({ val: 2 });
-const threes = new TotalOneNumber({ val: 3 });
-const fours = new TotalOneNumber({ val: 4 });
-const fives = new TotalOneNumber({ val: 5 });
-const sixes = new TotalOneNumber({ val: 6 });
+const ones = new TotalOneNumber({ val: 1, description: '1 point per 1' });
+const twos = new TotalOneNumber({ val: 2, description: '2 points per 2' });
+const threes = new TotalOneNumber({ val: 3, description: '3 points per 3' });
+const fours = new TotalOneNumber({ val: 4, description: '4 points per 4' });
+const fives = new TotalOneNumber({ val: 5, description: '5 points per 5' });
+const sixes = new TotalOneNumber({ val: 6, description: '6 points per 6' });
 
 // three/four of kind score as sum of all dice
 const threeOfKind = new SumDistro({ count: 3 });

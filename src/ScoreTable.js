@@ -8,19 +8,22 @@ class ScoreTable extends Component {
 
   render() {
     const { scores, doScore } = this.props;
-
+    const scoresArr = Object.values(this.props.scores);
+    let totalScore = 0;
+    scoresArr.forEach(score => totalScore += score > 0 ? score : 0);
+  
     return (
       <div className="ScoreTable">
         <section className="ScoreTable-section">
           <h2>Upper</h2>
           <table cellSpacing="0">
             <tbody>
-              <RuleRow name="Ones" score={scores.ones} doScore={evt => doScore("ones", ones.evalRoll)} />
-              <RuleRow name="Twos" score={scores.twos} doScore={evt => doScore("twos", twos.evalRoll)} />
-              <RuleRow name="Threes" score={scores.threes} doScore={evt => doScore("threes", threes.evalRoll)} />
-              <RuleRow name="Fours" score={scores.fours} doScore={evt => doScore("fours", fours.evalRoll)} />
-              <RuleRow name="Fives" score={scores.fives} doScore={evt => doScore("fives", fives.evalRoll)} />
-              <RuleRow name="Sixes" score={scores.sixes} doScore={evt => doScore("sixes", sixes.evalRoll)} />
+              <RuleRow name="Ones" description={ones.description} score={scores.ones} doScore={evt => doScore("ones", ones.evalRoll)} />
+              <RuleRow name="Twos" description={twos.description} score={scores.twos} doScore={evt => doScore("twos", twos.evalRoll)} />
+              <RuleRow name="Threes" description={threes.description} score={scores.threes} doScore={evt => doScore("threes", threes.evalRoll)} />
+              <RuleRow name="Fours" description={fours.description} score={scores.fours} doScore={evt => doScore("fours", fours.evalRoll)} />
+              <RuleRow name="Fives" description={fives.description} score={scores.fives} doScore={evt => doScore("fives", fives.evalRoll)} />
+              <RuleRow name="Sixes" description={sixes.description} score={scores.sixes} doScore={evt => doScore("sixes", sixes.evalRoll)} />
             </tbody>
           </table>
         </section>
@@ -37,6 +40,9 @@ class ScoreTable extends Component {
               <RuleRow name="Chance" score={scores.chance} doScore={evt => doScore("chance", chance.evalRoll)} />
             </tbody>
           </table>
+        </section>
+        <section className="ScoreTable-section">
+          <h2>Score: {totalScore}</h2>
         </section>
       </div>
     )
