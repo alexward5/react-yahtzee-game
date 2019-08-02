@@ -65,8 +65,24 @@ class FullHouse extends Rule {
 
 /** Check for small straights. */
 
-class SmallStraight {
+class SmallStraight extends Rule {
   // TODO
+  evalRoll = dice => {
+    let consec = 0;
+    // for each die check if the next die is in consecutive order
+    for (let i=0; i<dice.length-1; i++) {
+      if (dice[i+1] === dice[i] + 1) {
+        consec += 1;
+      } else {
+        consec = 0;
+      }
+      // if three dice are in consecutive order return 25 points
+      if (consec === 3) {
+        return this.score;
+      }
+    }
+    return 0;
+  }
 }
 
 /** Check for large straights. */
@@ -105,7 +121,7 @@ const fourOfKind = new SumDistro({ count: 4 });
 const fullHouse = new FullHouse({ score: 25 });
 
 // small/large straights score as 30/40
-const smallStraight = "TODO";
+const smallStraight = new SmallStraight({ score: 30 });
 const largeStraight = new LargeStraight({ score: 40 });
 
 // yahtzee scores as 50

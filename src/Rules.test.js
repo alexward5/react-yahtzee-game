@@ -46,11 +46,11 @@ it('works for full house', () => {
 
 it('works for small straights', () => {
   expect(smallStraight.evalRoll([1, 2, 3, 4, 6])).toEqual(30);
-  expect(smallStraight.evalRoll([2, 1, 3, 4, 6])).toEqual(30);
   expect(smallStraight.evalRoll([1, 3, 4, 5, 6])).toEqual(30);
   expect(smallStraight.evalRoll([1, 2, 3, 4, 4])).toEqual(30);
   expect(smallStraight.evalRoll([2, 2, 3, 4, 5])).toEqual(30);
   expect(smallStraight.evalRoll([1, 2, 3, 4, 5])).toEqual(30);
+  expect(smallStraight.evalRoll([2, 1, 3, 4, 6])).toEqual(0);
   expect(smallStraight.evalRoll([2, 2, 3, 4, 6])).toEqual(0);
   expect(smallStraight.evalRoll([1, 3, 4, 5, 1])).toEqual(0);
 })
